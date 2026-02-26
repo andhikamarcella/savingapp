@@ -1,6 +1,7 @@
 'use client'
 
 import { DayPicker } from 'react-day-picker'
+import 'react-day-picker/dist/style.css'
 import { CheckCircle2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { formatCurrency } from '@/lib/currencyFormatter'
