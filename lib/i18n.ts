@@ -47,7 +47,13 @@ export const translations = {
     other: 'Other',
     monthly: 'monthly',
     weekly: 'weekly',
-    daily: 'daily'
+    daily: 'daily',
+    note: 'Note',
+    save: 'Save',
+    pickPlan: 'Pick your plan',
+    pickPlanDesc: 'Pick a saving that feels right for you. You can change it anytime.',
+    mySavingsPlan: 'My Savings Plan',
+    targetDate: 'Target Date'
   },
   id: {
     title: 'Perencana Tabungan Pro',
@@ -95,7 +101,13 @@ export const translations = {
     other: 'Lainnya',
     monthly: 'bulanan',
     weekly: 'mingguan',
-    daily: 'harian'
+    daily: 'harian',
+    note: 'Catatan',
+    save: 'Simpan',
+    pickPlan: 'Pilih rencana',
+    pickPlanDesc: 'Pilih tabungan yang sesuai. Anda bisa mengubahnya kapan saja.',
+    mySavingsPlan: 'Rencana Tabungan Saya',
+    targetDate: 'Tanggal Target'
   }
 }
 

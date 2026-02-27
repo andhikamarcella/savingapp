@@ -15,6 +15,7 @@ interface SavingsState {
   setTheme: (value: ThemeMode) => void
   setReminder: (enabled: boolean, frequency: ReminderFrequency) => void
   createGoal: (goal: Goal) => void
+  setActiveGoalId: (goalId: string) => void
   setPlanType: (goalId: string, planType: PlanType) => void
   archiveGoal: (goalId: string) => void
   restoreGoal: (goalId: string) => void
@@ -35,6 +36,7 @@ export const useSavingsStore = create<SavingsState>()(
       setTheme: (theme) => set({ theme }),
       setReminder: (reminderEnabled, reminderFrequency) => set({ reminderEnabled, reminderFrequency }),
       createGoal: (goal) => set((state) => ({ goals: [...state.goals, goal], activeGoalId: goal.id })),
+      setActiveGoalId: (activeGoalId) => set({ activeGoalId }),
       setPlanType: (goalId, planType) =>
         set((state) => ({ goals: state.goals.map((g) => (g.id === goalId ? { ...g, planType } : g)) })),
       archiveGoal: (goalId) =>

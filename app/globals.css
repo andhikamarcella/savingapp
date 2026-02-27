@@ -1,18 +1,26 @@
-@import 'react-day-picker/dist/style.css';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 @layer components {
   .input {
-    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800;
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 dark:border-slate-700 dark:bg-slate-800;
   }
 
   .btn {
-    @apply rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:from-gold-600 hover:to-gold-700 disabled:cursor-not-allowed disabled:opacity-50 dark:from-gold-600 dark:to-gold-700 dark:hover:from-gold-500 dark:hover:to-gold-600;
   }
 
   .btn-secondary {
-    @apply rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium transition hover:border-emerald-500 dark:border-slate-700;
+    @apply rounded-xl border border-slate-300 bg-white/50 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-gold-500 hover:bg-gold-50 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:border-gold-600 dark:hover:bg-slate-800;
   }
 }
