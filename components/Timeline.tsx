@@ -23,10 +23,10 @@ export const Timeline = ({ currency, transactions }: { currency: Currency; trans
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="rounded-2xl border border-gold-100/50 p-4 text-sm dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/40 shadow-sm"
+            className="rounded-2xl border border-hk-100/50 p-4 text-sm dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/40 shadow-sm"
           >
-            <p className={tx.type === 'deposit' ? 'text-gold-600 dark:text-gold-400 font-bold text-base' : 'text-red-500 font-bold text-base'}>
-              {tx.type === 'deposit' ? '+' : '-'} {tx.type} {formatCurrency(tx.amount, currency)}
+            <p className={tx.type === 'deposit' ? 'text-hk-600 dark:text-hk-400 font-bold text-base' : 'text-hk-red-500 font-bold text-base'}>
+              {tx.type === 'deposit' ? '+' : '-'} {formatCurrency(tx.amount, currency)}
             </p>
             <p className="text-slate-500 dark:text-slate-400 font-medium mt-1">{new Date(tx.date).toLocaleString()}</p>
             {tx.note && <p className="mt-2 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-100 dark:border-slate-700/50">{tx.note}</p>}

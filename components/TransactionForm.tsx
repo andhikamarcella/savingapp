@@ -14,7 +14,7 @@ export const TransactionForm = ({ type, currency, onSubmit }: { type: 'deposit' 
 
   const symbol = currency === 'IDR' ? 'Rp' : '$'
   const title = type === 'deposit' ? t('addSaving', language) : t('withdraw', language)
-  const bgColors = type === 'deposit' ? 'from-gold-50/80 to-gold-100/50 dark:from-gold-900/10 dark:to-gold-900/5 dark:border-gold-900/50' : 'from-slate-50/80 to-slate-100/50 dark:from-slate-800/80 dark:to-slate-900/50 dark:border-slate-700'
+  const bgColors = type === 'deposit' ? 'from-hk-50/80 to-hk-100/50 dark:from-pink-900/10 dark:to-pink-900/5 dark:border-pink-900/50' : 'from-slate-50/80 to-slate-100/50 dark:from-slate-800/80 dark:to-slate-900/50 dark:border-slate-700'
 
   return (
     <motion.form
@@ -46,7 +46,7 @@ export const TransactionForm = ({ type, currency, onSubmit }: { type: 'deposit' 
       </div>
       <div className="flex flex-col sm:flex-row gap-4">
         <input className="input flex-1 dark:bg-slate-800/80 dark:border-slate-700/80 dark:text-white" value={note} onChange={(e) => setNote(e.target.value)} placeholder={t('note', language)} />
-        <button className="btn sm:w-auto w-full px-8 py-3 text-base shadow-lg bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 dark:from-gold-600 dark:to-gold-500 dark:hover:from-gold-500 dark:hover:to-gold-400" type="submit">{t('save', language)}</button>
+        <button className="btn sm:w-auto w-full px-8 py-3 text-base shadow-lg bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 dark:from-hk-600 dark:to-hk-500 dark:hover:from-hk-500 dark:hover:to-hk-400" type="submit">{t('save', language)}</button>
       </div>
     </motion.form>
   )

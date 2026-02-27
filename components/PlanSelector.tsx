@@ -22,23 +22,24 @@ export const PlanSelector = ({ goal, onSelect }: { goal: Goal; onSelect: (plan: 
             key={plan}
             onClick={() => onSelect(plan)}
             className={`rounded-2xl border p-4 text-left transition-all ${goal.planType === plan
-                ? 'border-gold-400 bg-gradient-to-br from-gold-50/80 to-gold-100/80 ring-2 ring-gold-400/30 shadow-md transform scale-[1.02] dark:border-gold-500/50 dark:from-gold-900/60 dark:to-gold-900/20 dark:ring-gold-500/30'
-                : 'border-slate-200 bg-white/50 hover:border-gold-300 dark:border-slate-700 dark:bg-slate-800/40 dark:hover:border-gold-700/50 opacity-90 hover:opacity-100 shadow-sm'
+              ? 'border-hk-400 bg-gradient-to-br from-hk-50/80 to-hk-100/80 ring-4 ring-hk-200 shadow-[0_8px_30px_rgb(236,72,153,0.15)] transform scale-[1.02] dark:border-pink-900/50 dark:from-pink-950/60 dark:to-pink-900/20 dark:ring-pink-900/50'
+              : 'border-slate-200 bg-white/50 hover:border-hk-300 dark:border-slate-700 dark:bg-slate-800/40 dark:hover:border-pink-900 opacity-90 hover:opacity-100 shadow-sm'
               }`}
           >
-            <p className={`font-bold capitalize text-lg ${goal.planType === plan ? 'text-gold-700 dark:text-gold-300' : 'text-slate-700 dark:text-slate-200'}`}>
+            <p className={`font-bold capitalize text-lg ${goal.planType === plan ? 'text-hk-600 dark:text-hk-300' : 'text-slate-700 dark:text-slate-200'}`}>
               {t(plan, language)}
             </p>
-            <p className={`text-sm font-medium mt-1 ${goal.planType === plan ? 'text-gold-600 dark:text-gold-400' : 'text-slate-500 dark:text-slate-400'}`}>
-              {formatCurrency(requiredPerPeriod(goal, plan), goal.currency)}
+            <p className={`text-sm font-medium mt-1 ${goal.planType === plan ? 'text-hk-500 dark:text-hk-400' : 'text-slate-500 dark:text-slate-400'}`}>
+              {formatCurrency(requiredPerPeriod(goal, plan), goal.currency)} / {t(plan, language)}
             </p>
           </button>
         ))}
       </div>
 
-      <div className="mt-5 rounded-2xl border border-gold-200/50 bg-gradient-to-r from-white to-gold-50/50 p-5 dark:border-gold-900/30 dark:from-slate-800/50 dark:to-slate-800/30 shadow-sm">
-        <p className="mb-3 flex items-center gap-2 font-bold text-lg text-gold-600 dark:text-gold-400">
-          <BadgeCheck className="h-6 w-6" />{t('mySavingsPlan', language)}
+      <div className="mt-5 rounded-2xl border border-hk-200/50 bg-gradient-to-r from-white to-hk-50/50 p-5 dark:border-pink-900/30 dark:from-slate-800/50 dark:to-slate-800/30 shadow-sm">
+        <p className="mb-3 flex items-center gap-2 font-bold text-lg text-hk-600 dark:text-hk-400">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>
+          {t('mySavingsPlan', language)}
         </p>
         <ul className="text-sm space-y-2 font-medium">
           <li className="flex justify-between">

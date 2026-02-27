@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body>
+      <body className="bg-hk-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-hk-200 dark:selection:bg-pink-900">
         <ThemeProvider>
           {children}
           <ToastContainer />

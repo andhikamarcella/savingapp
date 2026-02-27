@@ -62,11 +62,11 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gold-50 via-white to-gold-100 p-4 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+    <main className="min-h-screen bg-gradient-to-br from-hk-50 via-white to-hk-100 p-4 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
       <div className="mx-auto max-w-4xl space-y-5">
         <header className="rounded-3xl bg-white/60 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl border border-white/40 dark:border-slate-800/60 dark:bg-slate-900/60 dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-gold-500 to-gold-600 dark:from-gold-300 dark:to-gold-100 bg-clip-text text-transparent drop-shadow-sm">{t('title' as any, language) || 'Money Saving Planner Pro'}</h1>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-hk-600 to-hk-400 dark:from-hk-400 dark:to-hk-200 bg-clip-text text-transparent drop-shadow-sm">{t('title' as any, language) || 'Money Saving Planner Pro'}</h1>
             <div className="flex gap-2"><LanguageToggle /><ThemeToggle /></div>
           </div>
           <nav className="mt-4 flex flex-wrap gap-2 text-sm z-10 relative">
