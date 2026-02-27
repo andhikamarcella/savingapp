@@ -13,14 +13,50 @@
 
 @layer components {
   .input {
-    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition focus:border-gold-500 focus:ring-1 focus:ring-gold-500/20 dark:border-slate-700 dark:bg-slate-800;
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition;
+  }
+
+  .input:focus {
+    @apply border-gold-500 ring-1 ring-gold-500/20;
+  }
+
+  .dark .input {
+    @apply border-slate-700 bg-slate-800;
   }
 
   .btn {
-    @apply rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:from-gold-600 hover:to-gold-700 disabled:cursor-not-allowed disabled:opacity-50 dark:from-gold-600 dark:to-gold-700 dark:hover:from-gold-500 dark:hover:to-gold-600;
+    @apply rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition;
+  }
+
+  .btn:hover {
+    @apply from-gold-600 to-gold-700;
+  }
+
+  .btn:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .dark .btn {
+    @apply from-gold-600 to-gold-700;
+  }
+
+  .dark .btn:hover {
+    @apply from-gold-500 to-gold-600;
   }
 
   .btn-secondary {
-    @apply rounded-xl border border-slate-300 bg-white/50 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-gold-500 hover:bg-gold-50 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:border-gold-600 dark:hover:bg-slate-800;
+    @apply rounded-xl border border-slate-300 bg-white/50 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition;
+  }
+
+  .btn-secondary:hover {
+    @apply border-gold-500 bg-gold-50;
+  }
+
+  .dark .btn-secondary {
+    @apply border-slate-700 bg-slate-800/50 text-slate-200;
+  }
+
+  .dark .btn-secondary:hover {
+    @apply border-gold-600 bg-slate-800;
   }
 }
