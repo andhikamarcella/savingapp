@@ -1,0 +1,39 @@
+
+> money-saving-planner-pro@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Auto register service worker with: D:\savingapp\savingapp\node_modules\next-pwa\register.js
+> [PWA] Service worker: D:\savingapp\savingapp\public\sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+Failed to compile.
+
+./components/ExportPDFButton.tsx
+Error: 
+  [31mx[0m Expected unicode escape
+    ,-[[36;1;4mD:\savingapp\savingapp\components\ExportPDFButton.tsx[0m:76:1]
+ [2m76[0m | 
+ [2m77[0m |     sortedTxs.forEach((tx) => {
+ [2m78[0m |       const isDep = tx.type === 'deposit'
+ [2m79[0m |       html += \`
+    : [31;1m              ^[0m
+ [2m80[0m |         <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: \${isDep ? '#fff5f9' : '#fff1f2'}; border: 1px solid \${isDep ? '#fce7f3' : '#ffe4e6'}; border-radius: 12px;">
+ [2m81[0m |           <div>
+ [2m81[0m |             <p style="margin: 0; font-weight: bold; font-size: 16px; color: \${isDep ? '#db2777' : '#ef4444'}">\${isDep ? '+' : '-'}\${formatCurrency(tx.amount, goal.currency)}</p>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/ExportPDFButton.tsx
+./components/AppClient.tsx
+
+
+> Build failed because of webpack errors
