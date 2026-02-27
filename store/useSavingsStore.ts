@@ -34,7 +34,7 @@ export const useSavingsStore = create<SavingsState>()(
       setLanguage: (language) => set({ language }),
       setTheme: (theme) => set({ theme }),
       setReminder: (reminderEnabled, reminderFrequency) => set({ reminderEnabled, reminderFrequency }),
-      createGoal: (goal) => set({ goals: [goal], activeGoalId: goal.id }),
+      createGoal: (goal) => set((state) => ({ goals: [...state.goals, goal], activeGoalId: goal.id })),
       setPlanType: (goalId, planType) =>
         set((state) => ({ goals: state.goals.map((g) => (g.id === goalId ? { ...g, planType } : g)) })),
       archiveGoal: (goalId) =>

@@ -30,11 +30,6 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   const activeGoal = goals.find((g) => g.id === activeGoalId && !g.archived) ?? goals.find((g) => !g.archived)
 
   useEffect(() => {
-    const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    document.documentElement.classList.toggle('dark', isDark)
-  }, [theme])
-
-  useEffect(() => {
     if (!reminderEnabled) {
       stopReminder()
       return
@@ -49,21 +44,21 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   }, [])
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-emerald-50 to-slate-100 p-4 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
-      <div className="mx-auto max-w-4xl space-y-4">
-        <header className="rounded-3xl bg-white/80 p-4 shadow-soft backdrop-blur-md dark:bg-slate-900/80">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">{t('title', language)}</h1>
+    <main className="min-h-screen bg-gradient-to-br from-gold-50 via-white to-gold-100 p-4 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
+      <div className="mx-auto max-w-4xl space-y-5">
+        <header className="rounded-3xl bg-white/60 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl border border-white/40 dark:border-slate-800/60 dark:bg-slate-900/60 dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-gold-500 to-gold-600 dark:from-gold-300 dark:to-gold-100 bg-clip-text text-transparent drop-shadow-sm">{t('title', language)}</h1>
             <div className="flex gap-2"><LanguageToggle /><ThemeToggle /></div>
           </div>
-          <nav className="mt-3 flex flex-wrap gap-2 text-sm">
-            <Link className="btn-secondary" href="/">{t('dashboard', language)}</Link>
-            <Link className="btn-secondary" href="/create">{t('create', language)}</Link>
-            <Link className="btn-secondary" href="/settings">{t('settings', language)}</Link>
-            <Link className="btn-secondary" href="/privacy">{t('privacy', language)}</Link>
-            <Link className="btn-secondary" href="/terms">{t('terms', language)}</Link>
+          <nav className="mt-4 flex flex-wrap gap-2 text-sm">
+            <Link className="btn-secondary dark:text-slate-200 dark:hover:bg-slate-800" href="/">{t('dashboard', language)}</Link>
+            <Link className="btn-secondary dark:text-slate-200 dark:hover:bg-slate-800" href="/create">{t('create', language)}</Link>
+            <Link className="btn-secondary dark:text-slate-200 dark:hover:bg-slate-800" href="/settings">{t('settings', language)}</Link>
+            <Link className="btn-secondary dark:text-slate-200 dark:hover:bg-slate-800" href="/privacy">{t('privacy', language)}</Link>
+            <Link className="btn-secondary dark:text-slate-200 dark:hover:bg-slate-800" href="/terms">{t('terms', language)}</Link>
             <button
-              className={`px-4 py-2 rounded-xl font-medium transition ${reminderEnabled ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'}`}
+              className={`px-4 py-2 rounded-xl font-medium transition ${reminderEnabled ? 'bg-gold-100 text-gold-800 dark:bg-gold-900/40 dark:text-gold-300 dark:border dark:border-gold-800/50' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'}`}
               onClick={async () => {
                 if (reminderEnabled) {
                   setReminder(false, reminderFrequency)
@@ -81,7 +76,6 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
         {(!activeGoal || forceCreate) && (
           <GoalWizard onDone={(goal) => {
             createGoal(goal)
-            // If they were on the create page, redirect to home by replacing URL hash/state (next/router handled outside if needed, simple forceCreate toggle handles render)
             if (forceCreate) window.location.href = '/'
           }} />
         )}
