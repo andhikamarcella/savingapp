@@ -1,4 +1,5 @@
-import type { ReminderFrequency } from './types'
+import type { Language, ReminderFrequency } from './types'
+import { t } from './i18n'
 
 const KEY = 'msp-reminder-interval-id'
 
@@ -22,14 +23,23 @@ export const stopReminder = () => {
   }
 }
 
-export const startReminder = (frequency: ReminderFrequency) => {
+export const startReminder = (frequency: ReminderFrequency, language: Language) => {
   if (typeof window === 'undefined' || !('Notification' in window)) return false
   stopReminder()
+
+  if (Notification.permission === 'granted') {
+    // Immediate feedback so user knows the button works
+    new Notification(language === 'id' ? 'Pengingat Diaktifkan ✅' : 'Reminder Enabled ✅', {
+      body: language === 'id' ? 'Anda akan menerima pengingat tabungan.' : 'You will receive savings reminders.'
+    })
+  }
+
   const id = window.setInterval(() => {
     if (Notification.permission === 'granted') {
-      new Notification('Time to save for your goal 🚀')
+      new Notification(language === 'id' ? 'Waktunya menabung untuk tujuan Anda 🚀' : 'Time to save for your goal 🚀')
     }
   }, intervalMs(frequency))
+
   window.localStorage.setItem(KEY, String(id))
   return true
 }
