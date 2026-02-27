@@ -17,7 +17,7 @@
   }
 
   .input:focus {
-    @apply border-hk-400 ring-4 ring-hk-200 shadow-[0_0_15px_rgba(244, 114, 182, 0.3)];
+    @apply border-hk-400 ring-4 ring-hk-200 shadow-[0_0_15px_#f472b64d];
   }
 
   .dark .input {
@@ -25,11 +25,11 @@
   }
 
   .dark .input:focus {
-    @apply border-hk-600 ring-pink-900 shadow-[0_0_15px_rgba(219, 39, 119, 0.3)];
+    @apply border-hk-600 ring-pink-900 shadow-[0_0_15px_#db27774d];
   }
 
   .btn {
-    @apply rounded-2xl bg-gradient-to-r from-hk-400 to-hk-500 px-5 py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_0_rgba(236, 72, 153, 0.39)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(236, 72, 153, 0.23)];
+    @apply rounded-2xl bg-gradient-to-r from-hk-400 to-hk-500 px-5 py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_0_#ec489963] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_#ec48993b];
   }
 
   .btn:hover {
@@ -45,11 +45,11 @@
   }
 
   .dark .btn {
-    @apply from-hk-600 to-hk-700 shadow-[0_4px_14px_0_rgba(190, 24, 93, 0.39)];
+    @apply from-hk-600 to-hk-700 shadow-[0_4px_14px_0_#be185d63];
   }
 
   .dark .btn:hover {
-    @apply from-hk-500 to-hk-600 shadow-[0_6px_20px_rgba(236, 72, 153, 0.23)];
+    @apply from-hk-500 to-hk-600 shadow-[0_6px_20px_#ec48993b];
   }
 
   .btn-secondary {
