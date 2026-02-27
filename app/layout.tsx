@@ -27,6 +27,7 @@ const themeInitScript = `
 `
 
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { ToastContainer } from '@/components/ui/Toast'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           {children}
+          <ToastContainer />
         </ThemeProvider>
       </body>
     </html>

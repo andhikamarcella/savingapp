@@ -13,50 +13,54 @@
 
 @layer components {
   .input {
-    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 outline-none transition;
+    @apply w-full rounded-2xl border-2 border-hk-100 bg-white px-4 py-2.5 outline-none transition-all duration-300 placeholder:text-slate-400 font-medium;
   }
 
   .input:focus {
-    @apply border-gold-500 ring-1 ring-gold-500/20;
+    @apply border-hk-400 ring-4 ring-hk-200 shadow-[0_0_15px_rgba(244, 114, 182, 0.3)];
   }
 
   .dark .input {
-    @apply border-slate-700 bg-slate-800;
+    @apply border-pink-900 bg-slate-900 text-slate-100 placeholder:text-slate-500;
+  }
+
+  .dark .input:focus {
+    @apply border-hk-600 ring-pink-900 shadow-[0_0_15px_rgba(219, 39, 119, 0.3)];
   }
 
   .btn {
-    @apply rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition;
+    @apply rounded-2xl bg-gradient-to-r from-hk-400 to-hk-500 px-5 py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_0_rgba(236, 72, 153, 0.39)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(236, 72, 153, 0.23)];
   }
 
   .btn:hover {
-    @apply from-gold-600 to-gold-700;
+    @apply from-hk-500 to-hk-600;
+  }
+
+  .btn:active {
+    @apply translate-y-0 shadow-none;
   }
 
   .btn:disabled {
-    @apply cursor-not-allowed opacity-50;
+    @apply cursor-not-allowed opacity-50 shadow-none transform-none;
   }
 
   .dark .btn {
-    @apply from-gold-600 to-gold-700;
+    @apply from-hk-600 to-hk-700 shadow-[0_4px_14px_0_rgba(190, 24, 93, 0.39)];
   }
 
   .dark .btn:hover {
-    @apply from-gold-500 to-gold-600;
+    @apply from-hk-500 to-hk-600 shadow-[0_6px_20px_rgba(236, 72, 153, 0.23)];
   }
 
   .btn-secondary {
-    @apply rounded-xl border border-slate-300 bg-white/50 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition;
-  }
-
-  .btn-secondary:hover {
-    @apply border-gold-500 bg-gold-50;
+    @apply rounded-2xl border-2 border-hk-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition-all hover:bg-hk-50 hover:border-hk-300 hover:text-hk-600 active:scale-95;
   }
 
   .dark .btn-secondary {
-    @apply border-slate-700 bg-slate-800/50 text-slate-200;
+    @apply border-pink-900 bg-slate-900 text-hk-200;
   }
 
   .dark .btn-secondary:hover {
-    @apply border-gold-600 bg-slate-800;
+    @apply border-hk-600 bg-slate-800 text-hk-100;
   }
 }

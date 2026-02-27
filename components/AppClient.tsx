@@ -14,6 +14,8 @@ import { useSavingsStore } from '@/store/useSavingsStore'
 import { requestNotificationPermission, startReminder, stopReminder } from '@/lib/reminderScheduler'
 import { t } from '@/lib/i18n'
 import { GoalCarousel } from './GoalCarousel'
+import { Skeleton } from './ui/Skeleton'
+import { useToastStore } from '@/store/useToastStore'
 
 export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   const goals = useSavingsStore((s) => s.goals)
@@ -26,6 +28,8 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   const reminderFrequency = useSavingsStore((s) => s.reminderFrequency)
   const setReminder = useSavingsStore((s) => s.setReminder)
   const [formType, setFormType] = useState<'deposit' | 'withdraw' | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const addToast = useToastStore((s) => s.addToast)
 
   const unarchivedGoals = goals.filter(g => !g.archived)
   const activeGoal = unarchivedGoals.find((g) => g.id === activeGoalId) ?? unarchivedGoals[0]
@@ -39,10 +43,23 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   }, [reminderEnabled, reminderFrequency, language])
 
   useEffect(() => {
+    setMounted(true)
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(() => undefined)
     }
   }, [])
+
+  if (!mounted) {
+    return (
+      <main className="min-h-screen bg-hk-50 p-4 dark:bg-pink-950/20">
+        <div className="mx-auto max-w-4xl space-y-5">
+          <Skeleton className="h-20 w-full" />
+          <Skeleton className="h-40 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
+      </main>
+    )
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gold-50 via-white to-gold-100 p-4 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300">
@@ -64,6 +81,7 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
         {(!activeGoal || forceCreate) && (
           <GoalWizard onDone={(goal) => {
             createGoal(goal)
+            addToast({ title: 'Goal Created!', description: `${goal.title} has been added.`, type: 'success' })
             if (forceCreate) window.location.href = '/'
           }} />
         )}
@@ -76,9 +94,16 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
               goal={activeGoal}
               onDeposit={() => setFormType('deposit')}
               onWithdraw={() => setFormType('withdraw')}
-              onExport={() => exportGoalPDF(activeGoal)}
+              onExport={() => {
+                exportGoalPDF(activeGoal)
+                addToast({ title: 'Exporting PDF', description: 'Your PDF will be downloaded shortly.', type: 'info' })
+              }}
             />
-            {formType && <TransactionForm type={formType} currency={activeGoal.currency} onSubmit={(tx) => { addTransaction(activeGoal.id, tx); setFormType(null) }} />}
+            {formType && <TransactionForm type={formType} currency={activeGoal.currency} onSubmit={(tx) => {
+              addTransaction(activeGoal.id, tx);
+              setFormType(null);
+              addToast({ title: 'Transaction saved', description: `Successfully ${tx.type === 'deposit' ? 'added' : 'withdrawn'} ${tx.amount} ${activeGoal.currency}`, type: 'success' });
+            }} />}
             <Timeline currency={activeGoal.currency} transactions={activeGoal.transactions} />
           </>
         )}

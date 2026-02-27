@@ -1,0 +1,76 @@
+
+> money-saving-planner-pro@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+> [PWA] Compile server
+> [PWA] Compile server
+> [PWA] Compile client (static)
+> [PWA] Auto register service worker with: D:\savingapp\savingapp\node_modules\next-pwa\register.js
+> [PWA] Service worker: D:\savingapp\savingapp\public\sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\savingapp\savingapp\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[2]!D:\savingapp\savingapp\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[3]!D:\savingapp\savingapp\app\globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+Failed to compile.
+
+./app/globals.css:20:5
+Syntax error: D:\savingapp\savingapp\app\globals.css The `shadow-[0_0_15px_rgba(244,` class does not exist. If `shadow-[0_0_15px_rgba(244,` is a custom class, make sure it is defined within a `@layer` directive.
+
+ [90m 18 | [39m
+ [90m 19 | [39m  [33m.input[39m[33m:[39mfocus [33m{[39m
+[1m[31m>[39m[22m[90m 20 | [39m    [36m@apply[39m border-hk-400 ring-4 ring-hk-200 shadow-[33m[[39m[36m0_0_15px_rgba[39m[36m(244, 114, 182, 0.3)[39m[33m][39m[33m;[39m
+ [90m    | [39m    [1m[31m^[39m[22m
+ [90m 21 | [39m  [33m}[39m
+ [90m 22 | [39m
+
+./app/globals.css
+Syntax error: D:\savingapp\savingapp\app\globals.css The `shadow-[0_0_15px_rgba(244,` class does not exist. If `shadow-[0_0_15px_rgba(244,` is a custom class, make sure it is defined within a `@layer` directive. (20:5)
+
+ [90m 18 | [39m
+ [90m 19 | [39m  [33m.input[39m[33m:[39mfocus [33m{[39m
+[1m[31m>[39m[22m[90m 20 | [39m    [36m@apply[39m border-hk-400 ring-4 ring-hk-200 shadow-[33m[[39m[36m0_0_15px_rgba[39m[36m(244, 114, 182, 0.3)[39m[33m][39m[33m;[39m
+ [90m    | [39m    [1m[31m^[39m[22m
+ [90m 21 | [39m  [33m}[39m
+ [90m 22 | [39m
+
+    at tryRunOrWebpackError (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:312989)
+    at __webpack_require_module__ (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:131165)
+    at __nested_webpack_require_153728__ (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:130607)
+    at D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:131454
+    at symbolIterator (D:\savingapp\savingapp\node_modules\next\dist\compiled\neo-async\async.js:1:14444)
+    at done (D:\savingapp\savingapp\node_modules\next\dist\compiled\neo-async\async.js:1:14824)
+    at Hook.eval [as callAsync] (eval at create (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:15:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:13:26012)
+    at D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:130328
+    at symbolIterator (D:\savingapp\savingapp\node_modules\next\dist\compiled\neo-async\async.js:1:14402)
+-- inner error --
+Syntax error: D:\savingapp\savingapp\app\globals.css The `shadow-[0_0_15px_rgba(244,` class does not exist. If `shadow-[0_0_15px_rgba(244,` is a custom class, make sure it is defined within a `@layer` directive. (20:5)
+
+ [90m 18 | [39m
+ [90m 19 | [39m  [33m.input[39m[33m:[39mfocus [33m{[39m
+[1m[31m>[39m[22m[90m 20 | [39m    [36m@apply[39m border-hk-400 ring-4 ring-hk-200 shadow-[33m[[39m[36m0_0_15px_rgba[39m[36m(244, 114, 182, 0.3)[39m[33m][39m[33m;[39m
+ [90m    | [39m    [1m[31m^[39m[22m
+ [90m 21 | [39m  [33m}[39m
+ [90m 22 | [39m
+
+    at Object.<anonymous> (D:\savingapp\savingapp\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[2]!D:\savingapp\savingapp\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[3]!D:\savingapp\savingapp\app\globals.css:1:7)
+    at D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:922493
+    at Hook.eval [as call] (eval at create (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:13:28636), <anonymous>:7:1)
+    at Hook.CALL_DELEGATE [as _call] (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:13:25906)
+    at D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:131198
+    at tryRunOrWebpackError (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:312943)
+    at __webpack_require_module__ (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:131165)
+    at __nested_webpack_require_153728__ (D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:130607)
+    at D:\savingapp\savingapp\node_modules\next\dist\compiled\webpack\bundle5.js:28:131454
+    at symbolIterator (D:\savingapp\savingapp\node_modules\next\dist\compiled\neo-async\async.js:1:14444)
+
+Generated code for D:\savingapp\savingapp\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[2]!D:\savingapp\savingapp\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[3]!D:\savingapp\savingapp\app\globals.css
+
+Import trace for requested module:
+./app/globals.css
+
+
+> Build failed because of webpack errors
