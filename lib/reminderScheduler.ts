@@ -23,20 +23,31 @@ export const stopReminder = () => {
   }
 }
 
+export const triggerNotification = (title: string, body?: string) => {
+  if (typeof window === 'undefined' || !('Notification' in window) || Notification.permission !== 'granted') return
+
+  try {
+    new Notification(title, { body })
+  } catch (e) {
+    // Fallback for mobile Chrome/Safari that don't allow new Notification()
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(registration => {
+        registration.showNotification(title, { body }).catch(console.error)
+      }).catch(console.error)
+    }
+  }
+}
+
 export const startReminder = (frequency: ReminderFrequency, language: Language) => {
   if (typeof window === 'undefined' || !('Notification' in window)) return false
   stopReminder()
 
-  if (Notification.permission === 'granted') {
-    // Immediate feedback so user knows the button works
-    new Notification(language === 'id' ? 'Pengingat Diaktifkan ✅' : 'Reminder Enabled ✅', {
-      body: language === 'id' ? 'Anda akan menerima pengingat tabungan.' : 'You will receive savings reminders.'
-    })
-  }
-
   const id = window.setInterval(() => {
     if (Notification.permission === 'granted') {
-      new Notification(language === 'id' ? 'Waktunya menabung untuk tujuan Anda 🚀' : 'Time to save for your goal 🚀')
+      triggerNotification(
+        language === 'id' ? 'Waktunya menabung untuk tujuan Anda 🚀' : 'Time to save for your goal 🚀',
+        language === 'id' ? 'Yuk cek progress tabunganmu hari ini!' : 'Let\'s check your savings progress today!'
+      )
     }
   }, intervalMs(frequency))
 

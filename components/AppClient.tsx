@@ -16,6 +16,7 @@ import { t } from '@/lib/i18n'
 import { GoalCarousel } from './GoalCarousel'
 import { Skeleton } from './ui/Skeleton'
 import { useToastStore } from '@/store/useToastStore'
+import { TotalSavingsCard } from './TotalSavingsCard'
 
 export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
   const goals = useSavingsStore((s) => s.goals)
@@ -88,6 +89,7 @@ export const AppClient = ({ forceCreate }: { forceCreate?: boolean }) => {
 
         {activeGoal && !forceCreate && (
           <>
+            <TotalSavingsCard goals={goals} />
             <GoalCarousel goals={unarchivedGoals} activeId={activeGoal.id} />
             <PlanSelector goal={activeGoal} onSelect={(plan) => setPlanType(activeGoal.id, plan)} />
             <DashboardCard

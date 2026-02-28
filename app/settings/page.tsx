@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { useRef } from 'react'
 import { useSavingsStore } from '@/store/useSavingsStore'
+import { useToastStore } from '@/store/useToastStore'
 import { LanguageToggle } from '@/components/LanguageToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { requestNotificationPermission, startReminder, stopReminder } from '@/lib/reminderScheduler'
@@ -20,9 +22,52 @@ export default function SettingsPage() {
   const reminderEnabled = useSavingsStore((s) => s.reminderEnabled)
   const reminderFrequency = useSavingsStore((s) => s.reminderFrequency)
   const setReminder = useSavingsStore((s) => s.setReminder)
+  const addToast = useToastStore((s) => s.addToast)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const archived = goals.filter((g) => g.archived)
   const active = goals.filter((g) => !g.archived)
+
+  const handleExportData = () => {
+    try {
+      const data = window.localStorage.getItem('money-saving-planner-pro')
+      if (!data) {
+        addToast({ title: 'Export Failed', description: 'No data found to export.', type: 'error' })
+        return
+      }
+      const blob = new Blob([data], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `saving-planner-backup-${new Date().toISOString().split('T')[0]}.json`
+      a.click()
+      URL.revokeObjectURL(url)
+      addToast({ title: 'Export Successful', description: 'Your data has been downloaded.', type: 'success' })
+    } catch (e) {
+      addToast({ title: 'Export Failed', description: 'An error occurred during export.', type: 'error' })
+    }
+  }
+
+  const handleImportData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      try {
+        const content = event.target?.result as string
+        JSON.parse(content) // Validate JSON
+        window.localStorage.setItem('money-saving-planner-pro', content)
+        addToast({ title: 'Import Successful', description: 'Refreshing page to apply data...', type: 'success' })
+        setTimeout(() => window.location.reload(), 1500)
+      } catch (err) {
+        addToast({ title: 'Import Failed', description: 'Invalid backup file format.', type: 'error' })
+      }
+    }
+    reader.readAsText(file)
+    // reset input
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
 
   return (
     <main className="min-h-screen bg-hk-50 p-4 dark:bg-slate-950 transition-colors duration-300">
@@ -60,11 +105,38 @@ export default function SettingsPage() {
                   if (p === 'granted') {
                     setReminder(true, reminderFrequency)
                     startReminder(reminderFrequency, language)
+                    addToast({ title: 'Reminder Enabled', description: 'You will receive reminders.', type: 'success' })
+                  } else {
+                    addToast({ title: 'Permission Denied', description: 'Please enable notifications in your browser settings.', type: 'error' })
                   }
                 }}>{t('enableReminder', language)}</button>
-              <button className="btn-secondary" onClick={() => { setReminder(false, reminderFrequency); stopReminder() }}>Disable</button>
+              <button className="btn-secondary" onClick={() => {
+                setReminder(false, reminderFrequency);
+                stopReminder();
+                addToast({ title: 'Reminder Disabled', description: 'You will no longer receive reminders.', type: 'info' })
+              }}>Disable</button>
             </div>
           </div>
+        </section>
+
+        <section className="space-y-4 rounded-3xl border-2 border-slate-200 bg-slate-50/50 p-6 dark:border-slate-800 dark:bg-slate-900/40">
+          <h2 className="font-bold text-lg text-slate-800 dark:text-slate-200">Data Management</h2>
+          <div className="flex flex-wrap gap-3">
+            <button className="btn-secondary" onClick={handleExportData}>
+              Export Data (Backup)
+            </button>
+            <input
+              type="file"
+              accept=".json"
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleImportData}
+            />
+            <button className="btn-secondary" onClick={() => fileInputRef.current?.click()}>
+              Import Data (Restore)
+            </button>
+          </div>
+          <p className="text-xs text-slate-500">Back up your active and archived goals safely to your device to ensure you never lose your progress.</p>
         </section>
 
         <section className="space-y-3">
@@ -128,3 +200,4 @@ export default function SettingsPage() {
     </main>
   )
 }
+
